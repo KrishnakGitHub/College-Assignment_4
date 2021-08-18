@@ -1,3 +1,4 @@
+![output1](https://user-images.githubusercontent.com/41542288/129919900-b4c079d6-50f0-487f-87ce-8480e984ecdb.png)
 # College-Assignment_4
 Micropyramid(Assignment_4)
 

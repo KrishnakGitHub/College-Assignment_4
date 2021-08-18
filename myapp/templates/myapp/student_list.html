@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>College Department Junction</title>
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-fluid text-center h2 bg-primary text-white p-3">Assingment-4</div>
+	<div class="container">
+	<div class="row text-center mt-5">
+		<div class="col-6">
+			<form action="{% url 'search_results' %}" method="get">
+				<div class="row">
+					<div class="col-4">
+						<input name="q1" class="form-control" type="text" placeholder="Search...">
+					</div>
+					<div class="col-2">
+						<input type="submit" class="btn btn-outline-primary" value="Search">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-6">
+			<form action="{% url 'search_results' %}" method="get">
+				<div class="row">
+					<div class="col-4">
+						<select name="q2" class="form-select" aria-label="Default select example">
+						  <option selected value="all">All</option>
+						  {% for obj_list in object_list %}
+						  	<option value="{{obj_list.id}}">{{obj_list.name}}</option>
+						  {% endfor %}
+						</select>
+					</div>
+					<div class="col-2">
+						<input type="submit" class="btn btn-outline-primary" value="Apply">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+	<div class="container mt-5">
+		<h3>Search Results</h3>
+		<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Department</th>
+    </tr>
+  </thead>
+  <tbody>
+  	 {% for obj1 in stu_object_list %}
+    <tr>
+      <th scope="row">{{obj1.id}}</th>
+      <td>{{ obj1.name }}</td>
+      <td>{{ obj1.Department }}</td>
+    </tr>
+    {% endfor %}
+    {% for obj2 in lec_object_list %}
+    <tr>
+      <th scope="row">{{obj2.id}}</th>
+      <td>{{ obj2.name }}</td>
+      <td>{% for obj in obj2.Department.all %}
+      		{{obj}},
+      	  {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+    {% for obj3 in dep_stu_object_list %}
+    <tr>
+      <th scope="row">{{obj3.id}}</th>
+      <td>{{ obj3.name }} - Student</td>
+      <td>{{obj3.Department}}</td>
+    </tr>
+    {% endfor %}
+    {% for obj4 in dep_lec_object_list %}
+    <tr>
+      <th scope="row">{{obj4.id}}</th>
+      <td>{{ obj4.name }} - Lecturer</td>
+      <td>{% for obj in obj4.Department.all %}
+      		{{obj}},
+      	  {% endfor %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+	</div>
+</body>
+</html>
+

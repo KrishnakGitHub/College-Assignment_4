@@ -8,3 +8,4 @@ Django 3
 Run Commands:
 1. py manage.py makemigrations
 2. py manage.py migrate
+3. Py manage.py runserver

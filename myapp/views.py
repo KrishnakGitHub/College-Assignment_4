@@ -12,18 +12,25 @@ def get_queryset(request):
 
 	object_list = Department.objects.all()
 
-	stu_object_list = Student.objects.filter(name=query1)
-	lec_object_list = Lecturer.objects.filter(name=query1)
+	stu_object_list = Student.objects.all()
+	lec_object_list = Lecturer.objects.all()
+
+	if query1:
+		stu_object_list = Student.objects.filter(name=query1)
+		lec_object_list = Lecturer.objects.filter(name=query1)
 
 	if query2 =='all':
-		dep_stu_object_list = Student.objects.all()
-		dep_lec_object_list = Lecturer.objects.all()
-	else:
-		dep_stu_object_list = Student.objects.filter(Department=query2)
-		dep_lec_object_list = Lecturer.objects.filter(Department=query2)
+		stu_object_list = Student.objects.all()
+		lec_object_list = Lecturer.objects.all()
+	elif query2:
+		stu_object_list = Student.objects.filter(Department=query2)
+		lec_object_list = Lecturer.objects.filter(Department=query2)
+		
+
+
 	
 
 	context = {'stu_object_list':stu_object_list,'lec_object_list':lec_object_list,
-	'dep_stu_object_list':dep_stu_object_list,'dep_lec_object_list':dep_lec_object_list,'object_list':object_list}
+	'object_list':object_list}
 
 	return render(request, 'myapp/student_list.html', context)

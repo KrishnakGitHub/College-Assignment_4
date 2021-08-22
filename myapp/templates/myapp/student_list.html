@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-4">
 						<select name="q2" class="form-select" aria-label="Default select example">
-						  <option selected value="all">All</option>
+						  <option value="all">All</option>
 						  {% for obj_list in object_list %}
 						  	<option value="{{obj_list.id}}">{{obj_list.name}}</option>
 						  {% endfor %}
@@ -55,34 +55,18 @@
   	 {% for obj1 in stu_object_list %}
     <tr>
       <th scope="row">{{obj1.id}}</th>
-      <td>{{ obj1.name }}</td>
+      <td>{{ obj1.name }} -Student</td>
       <td>{{ obj1.Department }}</td>
     </tr>
     {% endfor %}
     {% for obj2 in lec_object_list %}
     <tr>
       <th scope="row">{{obj2.id}}</th>
-      <td>{{ obj2.name }}</td>
+      <td>{{ obj2.name }} - Lecturer</td>
       <td>{% for obj in obj2.Department.all %}
       		{{obj}},
       	  {% endfor %}
       </td>
-    </tr>
-    {% endfor %}
-    {% for obj3 in dep_stu_object_list %}
-    <tr>
-      <th scope="row">{{obj3.id}}</th>
-      <td>{{ obj3.name }} - Student</td>
-      <td>{{obj3.Department}}</td>
-    </tr>
-    {% endfor %}
-    {% for obj4 in dep_lec_object_list %}
-    <tr>
-      <th scope="row">{{obj4.id}}</th>
-      <td>{{ obj4.name }} - Lecturer</td>
-      <td>{% for obj in obj4.Department.all %}
-      		{{obj}},
-      	  {% endfor %}</td>
     </tr>
     {% endfor %}
   </tbody>
